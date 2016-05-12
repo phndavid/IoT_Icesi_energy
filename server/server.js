@@ -6,6 +6,25 @@ var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
 //--------------------------------------------------------------------
+// Connection database Firebase
+//--------------------------------------------------------------------
+var ref = new Firebase("https://saveenergy.firebaseio.com/");
+var usersRef = ref.child("users");
+var newUserRef = usersRef.push();
+newUserRef.set({
+    username : "Nelson David",
+    password : "password"
+});
+var devicesRef = ref.child("devices");
+var newDeviceRef = devicesRef.push();
+var date = new Date();
+newDeviceRef.set({
+    deviceId: "device01",
+    power: "99",
+    status: "on",
+    date : date
+});
+//--------------------------------------------------------------------
 // Connection client to bluemix iot platform
 //--------------------------------------------------------------------
 var Client = require("ibmiotf");
@@ -62,7 +81,7 @@ app.use(passport.initialize());
 app.delete('/api/Items/:id', passport.authenticate('mca-backend-strategy', {session: false}));
 
 // Tramas 
-app.get('/api/diveces', passport.authenticate('mca-backend-strategy', {session: false}), function(req, res){
+app.get('/api/devices',function(req, res){
 	res.send(messageTopics);
 });
 
