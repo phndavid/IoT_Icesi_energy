@@ -5,6 +5,45 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
+//--------------------------------------------------------------------
+// Connection client to bluemix iot platform
+//--------------------------------------------------------------------
+var Client = require("ibmiotf");
+var messageTopics = [];
+var appClientConfig = {
+	"org" : 'o79sac',
+	"id" : 'device01',
+    "type" : 'Simulacion',
+	"auth-key" : 'a-o79sac-3nzihrgttv',
+	"auth-token" : 'SlNC8CpGkN&PGt7u?K'
+}
+var appClient = new Client.IotfApplication(appClientConfig);
+appClient.connect();
+// Handle errors coming from the iotf service
+appClient.on("error", function (err) {
+    console.log("Error received while connecting to IoTF service: " + err.message);
+    if (err.message.indexOf('authorized') > -1) {
+        console.log('');
+        console.log("Make sure the device-simulator is registered in the IotF org with the following configuration:")
+        console.log(appClientConfig);
+        console.log('');
+    }
+    process.exit( );
+});
+appClient.on("connect", function () {
+    console.log("Device simulator is connected to the IoT Foundation service");
+    appClient.subscribeToDeviceStatus();
+    appClient.subscribeToDeviceEvents();
+ 
+});
+appClient.on("deviceStatus", function (deviceType, deviceId, payload, topic) {
+    console.log("Device status from :: "+deviceType+" : "+deviceId+" with payload : "+payload);
+});
+var counter = 0;
+appClient.on("deviceEvent", function (deviceType, deviceId, eventType, format, payload) {
+    console.log("Device Event from :: "+deviceType+" : "+deviceId+" of event "+eventType+" with payload : "+payload);
+    messageTopics.push({"payload":payload.toJSON()});
+});
 // ------------ Protecting mobile backend with Mobile Client Access start -----------------
 
 // Load passport (http://passportjs.org)
@@ -21,6 +60,11 @@ app.use(passport.initialize());
 
 // Protect DELETE endpoint so it can only be accessed by HelloTodo mobile samples
 app.delete('/api/Items/:id', passport.authenticate('mca-backend-strategy', {session: false}));
+
+// Tramas 
+app.get('/api/diveces', passport.authenticate('mca-backend-strategy', {session: false}), function(req, res){
+	res.send(messageTopics);
+});
 
 // Protect /protected endpoint which is used in Getting Started with Bluemix Mobile Services tutorials
 app.get('/protected', passport.authenticate('mca-backend-strategy', {session: false}), function(req, res){
