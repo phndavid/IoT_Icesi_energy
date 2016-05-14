@@ -1,13 +1,12 @@
-function addDevice(text){
-      var device = {
-        "deviceId": text,
-        "status": false
-      }
-
-      return $.ajax( {
-        url:API_URL,
-        method: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(item)
-      });
+var ref = new Firebase("https://saveenergy.firebaseio.com/");
+var devicesRef = ref.child("devices");
+function addDevice() {
+  var deviceId = $("#deviceId").val();
+  var newDeviceRef = devicesRef.push();
+    var date = new Date();
+    newDeviceRef.set({
+        createAt : date.toJSON(),
+        deviceId: deviceId.toString(),
+        status: "off"
+  });
 }
