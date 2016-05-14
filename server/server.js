@@ -8,7 +8,7 @@ var app = module.exports = loopback();
 //--------------------------------------------------------------------
 // Connection database Firebase
 //--------------------------------------------------------------------
-var ref = new Firebase("https://saveenergy.firebaseio.com/");
+/*var ref = new Firebase("https://saveenergy.firebaseio.com/");
 var usersRef = ref.child("users");
 var newUserRef = usersRef.push();
 newUserRef.set({
@@ -23,7 +23,7 @@ newDeviceRef.set({
     power: "99",
     status: "on",
     date : date
-});
+});*/
 //--------------------------------------------------------------------
 // Connection client to bluemix iot platform
 //--------------------------------------------------------------------
