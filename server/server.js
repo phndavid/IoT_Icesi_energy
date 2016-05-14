@@ -1,4 +1,5 @@
 var packageVersion = require('./../package.json').version;
+var Firebase = require("firebase");
 console.log("packageVersion :: " + packageVersion);
 
 var loopback = require('loopback');
@@ -8,7 +9,7 @@ var app = module.exports = loopback();
 //--------------------------------------------------------------------
 // Connection database Firebase
 //--------------------------------------------------------------------
-var ref = new Firebase("https://triviaahorroenergia.firebaseio.com/");
+var ref = new Firebase("https://saveenergy.firebaseio.com/");
 var usersRef = ref.child("users");
 var newUserRef = usersRef.push();
 newUserRef.set({
@@ -17,10 +18,12 @@ newUserRef.set({
 });
 var devicesRef = ref.child("devices");
 var newDeviceRef = devicesRef.push();
+var date = new Date();
 newDeviceRef.set({
     deviceId: "device01",
     power: "99",
-    status: "on"
+    status: "on",
+    date : date
 });
 //--------------------------------------------------------------------
 // Connection client to bluemix iot platform
