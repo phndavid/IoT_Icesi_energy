@@ -8,7 +8,7 @@ var app = module.exports = loopback();
 //--------------------------------------------------------------------
 // Connection database Firebase
 //--------------------------------------------------------------------
-/*var ref = new Firebase("https://saveenergy.firebaseio.com/");
+var ref = new Firebase("https://triviaahorroenergia.firebaseio.com/");
 var usersRef = ref.child("users");
 var newUserRef = usersRef.push();
 newUserRef.set({
@@ -17,13 +17,11 @@ newUserRef.set({
 });
 var devicesRef = ref.child("devices");
 var newDeviceRef = devicesRef.push();
-var date = new Date();
 newDeviceRef.set({
     deviceId: "device01",
     power: "99",
-    status: "on",
-    date : date
-});*/
+    status: "on"
+});
 //--------------------------------------------------------------------
 // Connection client to bluemix iot platform
 //--------------------------------------------------------------------
@@ -61,7 +59,7 @@ appClient.on("deviceStatus", function (deviceType, deviceId, payload, topic) {
 var counter = 0;
 appClient.on("deviceEvent", function (deviceType, deviceId, eventType, format, payload) {
     console.log("Device Event from :: "+deviceType+" : "+deviceId+" of event "+eventType+" with payload : "+payload);
-    messageTopics.push({"payload":payload.toJSON()});
+    messageTopics.push({"payload":payload.toString()});
 });
 // ------------ Protecting mobile backend with Mobile Client Access start -----------------
 
