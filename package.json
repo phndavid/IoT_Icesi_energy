@@ -1,35 +1,24 @@
 {
-  "name": "HelloTodo",
-  "description": "A simple todo list application created with StringLoop, LoopBack and Bluemix Mobile Services",
-  "version": "1.0.0",
-  "main": "server/server.js",
-  "scripts": {
-    "start": "node ."
-  },
-  "author": "Anton Aleksandrov",
-  "dependencies": {
-    "bms-mca-token-validation-strategy": "2.x",
-    "compression": "^1.0.3",
-    "cors": "^2.5.2",
-    "loopback": "^2.22.0",
-    "loopback-boot": "^2.6.5",
-    "loopback-component-explorer": "^2.1.0",
-    "loopback-connector-mysql": "^2.2.0",
-    "loopback-datasource-juggler": "^2.39.0",
-    "passport": "^0.3.2",
-    "serve-favicon": "^2.0.1",
-    "express": "^4.13.4",
-    "firebase": "^2.4.2",
-    "ibmiotf": "^0.2.12",
-    "mqtt": "^1.10.0",
-    "body-parser": "^1.15.1"
-  },
+  "name": "react-router-firebase",
+  "version": "2.0.0",
+  "description": "",
+  "main": "App.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ibm-bluemix-mobile-services/bms-hellotodo-strongloop.git"
+    "url": "https://github.com/tylermcginnis/react-router-firebase-auth"
   },
-  "engines": {
-    "node": "0.12.x"
+  "author": "Tyler McGinnis",
+  "dependencies": {
+    "firebase": "^2.3.2",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "react-router": "^2.0.0-rc5"
   },
-  "license": "Apache-2.0"
+  "devDependencies": {
+    "babel-core": "^6.4.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "webpack": "^1.12.14"
+  }
 }

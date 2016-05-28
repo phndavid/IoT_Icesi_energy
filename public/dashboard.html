@@ -1,0 +1,119 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="#"><h2 style="color: #fff; margin-left: 25px;">SEnergy<h2></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/" ng-click= "auth.logout()" style="margin-right: 25px; margin-top: 5px;">Cerrar sesión</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid" ng-controller="DevicesCtrl as dev">
+  <div class="row">
+    <div class="col-sm-3 col-md-2" style="background: #e8e8e8;height: 100%;position: fixed;">
+      <ul class="nav nav-sidebar" style="margin-top: 90px;">
+        <li><a href="#devices">Dispositivos</a></li>
+        <li><a href="#report">Reporte</a></li>
+        <li><a href="#analytics">Analisis</a></li>
+        <li><a href="#management">Gestión</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div id="devices" class="col-md-12" style="top: 80px;height: 465px;">
+        <h1>Dispositivo</h1>
+        <div  class="col-sm-4" style="background: #2d2d2d;height: 300px;">
+          <h1 style="color: #fff">Asociar dispositivo</h1>
+            <form class="registration-form" ng-submit="dev.associateDevice()">
+              <label>ID del dispositivo</label>
+              <input type="text" placeholder="ID del dispositivo..."></input>
+              <button type="submit" class="btn" style="margin-top: 10px;">Asociar</button>
+            </form>
+        </div>
+      </div>
+      <div id="report" class="col-md-12">
+        <h1>Reporte</h1>
+         <button class="btn" ng-click="dev.dataDevice()">Generar Reporte</button>
+         <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Id Dispositivo</th>
+              <th>Potencia</th>
+              <th>Estado</th>
+              <th>Hora</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="history in dev.histories">
+              <td>{{history.idDevice}}</td>
+              <td>{{history.power}}</td>
+              <td>{{history.status}}</td>
+              <td>{{history.hour}}</td>
+              <td>{{history.date}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="analytics" class="col-md-12" ng-controller="ChartCtrl as chart">
+        <h1>Analísis</h1>
+        <button class="btn" ng-click="chart.chartPower()">Graficar</button>
+        <div id="container">Placeholder for chart</div>
+      </div>
+      <div id="management">
+         <h1>Gestión</h1>
+        <button class="btn">Apagar</button>
+        <button class="btn">Encender</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        title: {
+            text: 'Consumo energetico Anual',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'Fuente: senergy.com',
+            x: -20
+        },
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+        yAxis: {
+            title: {
+                text: 'Consumo (KW/h)'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: 'KW/h'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Consumo',
+            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+        }]
+    });
+});
+</script-->

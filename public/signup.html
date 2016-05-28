@@ -1,0 +1,25 @@
+<div style="background: url(./assets/img/backgrounds/b.jpg); height: 100%; position: fixed; width: 100%;">
+<!-- Top content -->
+<div class="top-content">
+    <div class="col-sm-4 col-md-offset-4 text">
+       <h1>Registro </h1>
+       <div class="form-bottom">
+            <form class="registration-form" ng-submit="auth.register()">
+                <div class="form-group">
+                    <label class="sr-only">Nombre Completo</label>
+                    <input type="text" name="form-first-name" ng-model="auth.user.name" placeholder="Nombre completo" class="form-first-name form-control" id="form-first-name">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Correo electrónico</label>
+                    <input type="text" name="form-last-name" ng-model="auth.user.email" placeholder="Correo electrónico" class="form-last-name form-control" id="form-last-name">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Contraseña</label>
+                    <input type="password" name="form-email" ng-model="auth.user.password"  placeholder="Contraseña" class="form-email form-control" id="form-email">
+                </div>
+                <button type="submit" class="btn">Registrarse</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

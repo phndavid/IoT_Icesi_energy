@@ -1,17 +1,16 @@
-This README.md file is displayed on your project page. You should edit this 
-file to describe your project, including instructions for building and 
-running the project, pointers to the license under which you are making the 
-project available, and anything else you think would be useful for others to
-know.
+# Auth with React Router and Firebase
+Starter kit for authentication and protected routes with React Router and Firebase.
 
-We have created an empty license.txt file for you. Well, actually, it says,
-"<Replace this text with the license you've chosen for your project.>" We 
-recommend you edit this and include text for license terms under which you're
-making your code available. A good resource for open source licenses is the 
-[Open Source Initiative](http://opensource.org/).
+*Using React Router 2.0.X and Firebase 2.3.X*
 
-Be sure to update your project's profile with a short description and 
-eye-catching graphic.
+#### Features:
+* Protected Routes with React Router
+* Register new users with Firebase
+* Add new users to ```/users``` in your Firebase
+* Login/Logout Functionality
+* Simple Boostrap UI
 
-Finally, consider defining some sprints and work items in Track & Plan to give 
-interested developers a sense of your cadence and upcoming enhancements.
+#### Instructions:
+* ```npm install```
+* Add your Firebase URL to ```firebaseUtils.js``` file.
+
